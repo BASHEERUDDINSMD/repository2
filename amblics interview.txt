@@ -1,0 +1,128 @@
+database_name,
+schema_name,
+table_name,
+
+
+create or replace Test_proc(P_DATABASE varchar, P_SCHEMA varchar, P_TABLE varchar)
+RETURN STRING NOT NULL
+LANGUAGE SQL
+EXECUTE AS OWNER
+AS
+$$
+DECLARE
+SELECT_STATEMENT VARCAHR;
+SELECT_COLUMN VARCAHR;
+BEGIN
+SELECT_STATEMENT:='SELECT COUNT(*) FROM '':P_DATABASE''||.||'':P_SCHEMA''||.||'':P_TABLE''';
+SELECT_COLUMN='SELECT COUNT(*) FROM '':P_DATABASE''.||''INFORMATION_SCHEMA.COLUMNS ''||WHERE TABLE_NAME='':P_TABLE''';
+EXECUTE IMMEDIATE :SELECT_STATEMENT;
+EXECUTE IMMEDIATE :SELECT_COLUMN;
+RETURN 'DONE'
+END;
+$$;
+
+
+salary1	salary2	outputp1
+100	200	210
+200	100	210
+105	111	210
+150	300	210
+210	350	210
+200	100	210
+
+
+SELECT SALARY1,SALARY2,MAX(SALARY1) AS OUTPUT1 FROM SALARY_TABLE GROUP BY SALARY1,SALARY2;
+
+ 
+
+id	amount	o/p
+11	10	10
+12	5	1
+13	20	20
+11	15	10
+12	1	1
+14	30	30
+
+ 
+SELECT ID, AMOUNT, (SELECT MIN(AMOUNT) FROM SALARY_TABLE GROUP BY ID) AS O/P FROM SALARY_TABLE;
+
+
+
+
+
+
+
+[
+
+{
+
+"AuthorName": "Author-1",
+
+"Category": [{
+
+"CategoryName": "Fiction",
+
+"Genre": [{
+
+"GenreName": "Action and Adventure",
+
+"Novel": [{
+
+"Novel": "Novel-1",
+
+"Sales": "200"
+
+},
+
+{
+
+"Novel": "Novel-2",
+
+"Sales": "850"
+
+}
+
+]
+
+}
+
+]
+
+}
+
+]
+
+}
+
+]
+
+
+
+
+
+
+
+
+
+SELECT RAW_JASON:AUTHORNAME FROM DB.SCHEMA.JASON_FILE,LATERAL(FLATTEN(INPUT=>RAW_JASON));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
