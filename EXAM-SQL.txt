@@ -1,0 +1,85 @@
+1.Create a table with 3 column's with int, varchar, int datatypes
+create table customer(cus_id int, cus_name varchar(100),cus_no int);
+
+
+2. insert some 2 full records into that table
+insert into customer values(10001,'shaik',998929);
+insert into customer values(10001,'shaik',900012);
+
+3. insert specific column values into that particular table
+insert into customer(cus_id,cus_name) values(10003,'syed');
+insert into customer(cus_id,cus_no) values(10004,779946);
+
+4. add new column to that table
+alter table customer add cus_dept varchar(100);
+
+5. rename your table name
+alter table customer rename to customer_data;
+
+6. clone your database
+not able to CLONE
+
+7. add not null column to your cloned table
+alter table customer_data modify column cus_id int not null;
+
+8. try inserting null values into that table
+not taking null values cause column is "not null"
+insert into customer_data(cus_name,cus_no,cus_dept) values('molla',889945,'civil');
+
+9. insert few more records into that table
+insert into customer_data(cus_id,cus_name,cus_no,cus_dept) values(10005,'molla',889945,'civil');
+insert into customer_data(cus_id,cus_name,cus_no,cus_dept) values(10006,'golla',905280,'mechanical');
+
+10. start deleting records based on id's
+delete from customer_data where cus_id = 10006;
+
+11. create unique contraint on top any one column
+alter table customer_data add unique(cus_id);
+
+12. try to insert duplicate records into that table
+not accepting duplicate cause column is unique
+
+13. delete one column from that table
+alter table customer_data drop cus_dept;
+
+
+14. create a new table from existing table
+create table employees as select * from hyderabad.customer_data;
+
+
+15. add a new column to that newly created table with check constraint
+alter table employees add column cus_age int;
+alter table employees add constraint check(cus_age>=18);
+
+
+16. verify check constraint by adding some new records into that table////
+not accpeting record without checking condition
+
+update employees set cus_age = 20 where cus_id = 10006;
+insert into employees values(10007,'akbar',113355,15);
+
+17. perform select operation on that particular table
+select * from hyderabad.employees;
+select * from hyderabad.customer_data;
+
+18. show the records which has null values using where condition
+select * from hyderabad.employees where cus_name is null;
+select * from hyderabad.employees where cus_no is null;
+
+
+19. delete the entire table content
+truncate table employees;
+
+20. delete table complete
+drop table employees;
+drop table customer_table;
+
+
+
+
+
+
+
+
+
+
